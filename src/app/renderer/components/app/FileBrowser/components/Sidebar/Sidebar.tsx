@@ -27,6 +27,8 @@ import {If} from '../../../../helper/If';
 import styles from './SidebarStyles.scss';
 import {selectFilter} from '../../../../../actions/fileTree/selectFilter';
 import {resetFilter} from '../../../../../actions/fileTree/resetFilter';
+import {TextField} from '../../../../form/TextField';
+import {searchForFile} from "../../../../../actions/fileTree/searchForFile";
 
 interface Injected {
     projectState: ProjectState;
@@ -67,6 +69,12 @@ export class Sidebar extends React.Component<{}, {}> {
                             }
                         </Menu>
                     </IconDropdown>
+                    <TextField
+                        className={styles.search}
+                        placeholder='Search files'
+                        onChange={this.onSearch}
+                        selectAllOnFocus
+                    />
                 </FileTreeButtons>
 
                 <If cond={this.injected.projectState.project.filter != null}>
@@ -85,6 +93,7 @@ export class Sidebar extends React.Component<{}, {}> {
                     onSelectFileVariant={this.onSelectFileVariant}
                     onSelectDir={this.onSelectDir}
                     onClickAddVariant={this.onClickAddVariant}
+                    filterText={this.injected.editorState.fileSearchText}
                 />
             </div>
         );
@@ -121,6 +130,10 @@ export class Sidebar extends React.Component<{}, {}> {
 
     private openFolder = () => {
         openFolderExternally();
+    };
+
+    private onSearch = (value: string) => {
+        searchForFile(value);
     };
 
     private onSelectVariantFilter = (filter: string) => {
