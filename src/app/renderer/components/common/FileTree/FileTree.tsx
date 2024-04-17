@@ -33,6 +33,17 @@ export class FileTree extends React.Component<Props> {
             files = files.filter(byFileSearch(this.props.filterText));
         }
 
+        if(files.length === 0)
+        {
+            return (
+                <div className={[styles.tree, this.props.className].join(' ')}>
+                    <ul>
+                        <p>No files matching</p>
+                    </ul>
+                </div>
+            );
+        }
+
         return (
             <div className={[styles.tree, this.props.className].join(' ')}>
                 <ul>
