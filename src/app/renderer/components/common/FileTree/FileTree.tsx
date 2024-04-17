@@ -27,7 +27,7 @@ interface Props {
 export class FileTree extends React.Component<Props> {
 
     render() {
-        let files = this.props.tree.children.sort();
+        let files : SchemaTreeItem[] = this.props.tree.children.sort();
         if(this.props.filterText)
         {
             files = files.filter(byFileSearch(this.props.filterText));
