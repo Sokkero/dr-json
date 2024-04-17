@@ -35,6 +35,14 @@ interface Injected {
     editorState: EditorState;
 }
 
+const debounce = (fn: Function, ms: number = 400) => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+    return function (this: any, ...args: any[]) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => fn.apply(this, args), ms);
+    };
+};
+
 @inject('projectState', 'editorState')
 @observer
 export class Sidebar extends React.Component<{}, {}> {
@@ -72,7 +80,9 @@ export class Sidebar extends React.Component<{}, {}> {
                     <TextField
                         className={styles.search}
                         placeholder='Search files'
-                        onChange={this.onSearch}
+                        onChange={(value: string) => {
+                            debounce(this.onSearch, 500)(value);
+                        }}
                         selectAllOnFocus
                     />
                 </FileTreeButtons>
