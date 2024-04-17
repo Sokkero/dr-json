@@ -117,7 +117,7 @@ export class FileTree extends React.Component<Props> {
         if (dir.collapsed) {
             icon = Icon.FOLDER_COLLAPSED;
         }
-        let children = dir.children;
+        let children : SchemaTreeItem[] = dir.children;
         if(this.props.filterText)
         {
             children = children.filter(byFileSearch(this.props.filterText));
