@@ -20,7 +20,7 @@ export function byFileSearch(search: string): (item: SchemaTreeItem) => boolean 
 
 function checkDir(dir: SchemaDir, search: string) : boolean
 {
-    let children = dir.children;
+    const children : SchemaTreeItem[] = dir.children;
     for(let i = children.length - 1; i >= 0; i--)
     {
         const child = children[i];
