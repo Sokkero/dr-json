@@ -19,6 +19,7 @@ import {CreateEntry} from '../../domain/useCases/entries/CreateEntry';
 import {DeleteEntry} from '../../domain/useCases/entries/DeleteEntry';
 import {OpenCreateEntry} from '../../domain/useCases/entries/OpenCreateEntry';
 import {SearchInFile} from '../../domain/useCases/entries/SearchInFile';
+import {SearchInProject} from '../../domain/useCases/project/SearchInProject';
 import {ToggleCollapseEntries} from '../../domain/useCases/entries/ToggleCollapseEntries';
 import {UpdateEntry} from '../../domain/useCases/entries/UpdateEntry';
 import {CollapseAllDirs} from '../../domain/useCases/fileTree/CollapseAllDirs';
@@ -79,6 +80,7 @@ container.bind<SearchForFile>(SearchForFile).toSelf().inSingletonScope();
 container.bind<CloseProject>(CloseProject).toSelf().inSingletonScope();
 container.bind<OpenProject>(OpenProject).toSelf().inSingletonScope();
 container.bind<Reload>(Reload).toSelf().inSingletonScope();
+container.bind<SearchInProject>(SearchInProject).toSelf().inSingletonScope();
 // - variants
 container.bind<CloseCreateVariant>(CloseCreateVariant).toSelf().inSingletonScope();
 container.bind<CreateVariant>(CreateVariant).toSelf().inSingletonScope();

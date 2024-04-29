@@ -8,8 +8,8 @@ import {If} from '../../helper/If';
 import {Icon} from '../Icon';
 import {Link} from '../Link';
 import styles from './FileTreeStyles.scss';
-import {SchemaFileVariant} from "../../../../../domain/states/objects/fileTree/SchemaFileVariant";
-import {byFileSearch} from "../../../../../domain/context/fileTree/filter/byFileSearch";
+import {SchemaFileVariant} from '../../../../../domain/states/objects/fileTree/SchemaFileVariant';
+import {byFileSearch} from '../../../../../domain/context/fileTree/filter/byFileSearch';
 
 interface Props {
     tree: SchemaTree;
@@ -38,7 +38,7 @@ export class FileTree extends React.Component<Props> {
             return (
                 <div className={[styles.tree, this.props.className].join(' ')}>
                     <ul>
-                        <p>No files matching</p>
+                        <p>No files found...</p>
                     </ul>
                 </div>
             );

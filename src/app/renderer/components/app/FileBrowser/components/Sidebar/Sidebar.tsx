@@ -29,6 +29,7 @@ import {selectFilter} from '../../../../../actions/fileTree/selectFilter';
 import {resetFilter} from '../../../../../actions/fileTree/resetFilter';
 import {TextField} from '../../../../form/TextField';
 import {searchForFile} from '../../../../../actions/fileTree/searchForFile';
+import {searchInProject} from '../../../../../actions/project/searchInProject';
 
 interface Injected {
     projectState: ProjectState;
@@ -81,16 +82,14 @@ export class Sidebar extends React.Component<{}, {}> {
                         className={styles.searchFiles}
                         placeholder='Search files...'
                         onChange={(value: string) => {
-                            debounce(this.onSearch, 500)(value);
+                            debounce(this.onSearchForFile, 500)(value);
                         }}
                     />
                     <TextField
                         className={styles.searchProject}
                         placeholder='Search in project...'
                         onPressEnter={(value: string) => {
-                            if(value) {
-                                console.log(value);
-                            }
+                            this.onSearchProject(value);
                         }}
                     />
                 </FileTreeButtons>
@@ -150,8 +149,12 @@ export class Sidebar extends React.Component<{}, {}> {
         openFolderExternally();
     };
 
-    private onSearch = (value: string) => {
+    private onSearchForFile = (value: string) => {
         searchForFile(value);
+    };
+
+    private onSearchProject = (value: string) => {
+        searchInProject(value);
     };
 
     private onSelectVariantFilter = (filter: string) => {
