@@ -28,7 +28,7 @@ import styles from './SidebarStyles.scss';
 import {selectFilter} from '../../../../../actions/fileTree/selectFilter';
 import {resetFilter} from '../../../../../actions/fileTree/resetFilter';
 import {TextField} from '../../../../form/TextField';
-import {searchForFile} from "../../../../../actions/fileTree/searchForFile";
+import {searchForFile} from '../../../../../actions/fileTree/searchForFile';
 
 interface Injected {
     projectState: ProjectState;
@@ -78,12 +78,20 @@ export class Sidebar extends React.Component<{}, {}> {
                         </Menu>
                     </IconDropdown>
                     <TextField
-                        className={styles.search}
-                        placeholder='Search files'
+                        className={styles.searchFiles}
+                        placeholder='Search files...'
                         onChange={(value: string) => {
                             debounce(this.onSearch, 500)(value);
                         }}
-                        selectAllOnFocus
+                    />
+                    <TextField
+                        className={styles.searchProject}
+                        placeholder='Search in project...'
+                        onPressEnter={(value: string) => {
+                            if(value) {
+                                console.log(value);
+                            }
+                        }}
                     />
                 </FileTreeButtons>
 
