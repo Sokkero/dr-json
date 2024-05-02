@@ -110,7 +110,8 @@ export class Sidebar extends React.Component<{}, {}> {
                     onSelectFileVariant={this.onSelectFileVariant}
                     onSelectDir={this.onSelectDir}
                     onClickAddVariant={this.onClickAddVariant}
-                    filterText={this.injected.editorState.fileSearchText}
+                    fileFilterText={this.injected.editorState.fileSearchText}
+                    contentFilterText={this.injected.projectState.projectSearchText}
                 />
             </div>
         );

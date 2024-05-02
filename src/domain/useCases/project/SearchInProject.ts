@@ -10,8 +10,7 @@ export class SearchInProject {
     }
 
     execute(text: string): Promise<void> {
-        console.log(text);
-        this.projectState.setLoading();
+        this.projectState.setProjectSearchText(text);
         return Promise.resolve();
     }
 }
