@@ -124,10 +124,16 @@ export class Sidebar extends React.Component<{}, {}> {
 
     private onSelectFile = (file: SchemaFile) => {
         selectFile(file.basename);
+        if(this.injected.editorState.currentFile) {
+            this.injected.editorState.currentFile.search(this.injected.projectState.projectSearchText);
+        }
     };
 
     private onSelectFileVariant = (basename: string, file: SchemaFileVariant) => {
         selectFileVariant(basename, file.variantId);
+        if(this.injected.editorState.currentFile) {
+            this.injected.editorState.currentFile.search(this.injected.projectState.projectSearchText);
+        }
     };
 
     private onSelectDir = (dir: SchemaDir) => {
