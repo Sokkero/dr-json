@@ -3,7 +3,7 @@ import {SchemaTreeItem} from '../../../states/objects/fileTree/SchemaTreeItem';
 import {SchemaFile} from "../../../states/objects/fileTree/SchemaFile";
 import {FilesystemImpl} from "../../../../app/renderer/services/FilesystemImpl";
 
-export function byProjectSearch(search: string, filesystem: FilesystemImpl): (item: SchemaTreeItem) => boolean {
+export function byFileContentSearch(search: string, filesystem: FilesystemImpl): (item: SchemaTreeItem) => boolean {
     if (!search) {
         return (): boolean => true;
     }

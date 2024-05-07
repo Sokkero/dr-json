@@ -9,8 +9,8 @@ import {Icon} from '../Icon';
 import {Link} from '../Link';
 import styles from './FileTreeStyles.scss';
 import {SchemaFileVariant} from '../../../../../domain/states/objects/fileTree/SchemaFileVariant';
-import {byFileSearch} from '../../../../../domain/context/fileTree/filter/byFileSearch';
-import {byProjectSearch} from '../../../../../domain/context/fileTree/filter/byProjectSearch';
+import {byFileNameSearch} from '../../../../../domain/context/fileTree/filter/byFileNameSearch';
+import {byFileContentSearch} from '../../../../../domain/context/fileTree/filter/byFileContentSearch';
 import {FilesystemImpl} from "../../../services/FilesystemImpl";
 
 interface Props {
@@ -22,8 +22,8 @@ interface Props {
     onSelectFileVariant?: (basename: string, file: SchemaFileVariant) => void;
     onSelectDir?: (dir: SchemaDir) => void;
     onClickAddVariant: () => void;
-    fileFilterText?: string;
-    contentFilterText?: string;
+    fileNameSearchText?: string;
+    fileContentSearchText?: string;
 }
 
 @observer
@@ -39,14 +39,14 @@ export class FileTree extends React.Component<Props> {
 
     render() {
         let files : SchemaTreeItem[] = this.props.tree.children.sort();
-        if(this.props.fileFilterText)
+        if(this.props.fileNameSearchText)
         {
-            files = files.filter(byFileSearch(this.props.fileFilterText));
+            files = files.filter(byFileNameSearch(this.props.fileNameSearchText));
         }
 
-        if(this.props.contentFilterText)
+        if(this.props.fileContentSearchText)
         {
-            files = files.filter(byProjectSearch(this.props.contentFilterText, this.filesystem));
+            files = files.filter(byFileContentSearch(this.props.fileContentSearchText, this.filesystem));
         }
 
         if(files.length === 0)
@@ -134,14 +134,14 @@ export class FileTree extends React.Component<Props> {
             icon = Icon.FOLDER_COLLAPSED;
         }
         let children : SchemaTreeItem[] = dir.children;
-        if(this.props.fileFilterText)
+        if(this.props.fileNameSearchText)
         {
-            children = children.filter(byFileSearch(this.props.fileFilterText));
+            children = children.filter(byFileNameSearch(this.props.fileNameSearchText));
         }
 
-        if(this.props.contentFilterText)
+        if(this.props.fileContentSearchText)
         {
-            children = children.filter(byProjectSearch(this.props.contentFilterText, this.filesystem));
+            children = children.filter(byFileContentSearch(this.props.fileContentSearchText, this.filesystem));
         }
 
         if(children.length === 0)

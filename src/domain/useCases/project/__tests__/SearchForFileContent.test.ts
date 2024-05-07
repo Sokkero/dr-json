@@ -1,15 +1,15 @@
 import 'jest';
 import 'reflect-metadata';
 import {ProjectState} from "../../../states/ProjectState";
-import {SearchInProject} from '../SearchInProject';
+import {SearchForFileContent} from '../SearchforFileContent';
 
-let useCase: SearchInProject;
+let useCase: SearchForFileContent;
 let projectState: ProjectState;
 let search: string;
 
 beforeEach(() => {
     projectState = new ProjectState();
-    useCase = new SearchInProject(projectState);
+    useCase = new SearchForFileContent(projectState);
     search = 'foo';
 });
 
@@ -18,7 +18,7 @@ describe('SearchInProject', () => {
 
         return useCase.execute(search)
             .then(() => {
-                expect(projectState.projectSearchText).toBe(search);
+                expect(projectState.fileContentSearchText).toBe(search);
             });
     });
 });

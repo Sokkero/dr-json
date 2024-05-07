@@ -28,8 +28,8 @@ import styles from './SidebarStyles.scss';
 import {selectFilter} from '../../../../../actions/fileTree/selectFilter';
 import {resetFilter} from '../../../../../actions/fileTree/resetFilter';
 import {TextField} from '../../../../form/TextField';
-import {searchForFile} from '../../../../../actions/fileTree/searchForFile';
-import {searchInProject} from '../../../../../actions/project/searchInProject';
+import {searchForFileName} from '../../../../../actions/fileTree/searchForFileName';
+import {searchForFileContent} from '../../../../../actions/project/searchForFileContent';
 
 interface Injected {
     projectState: ProjectState;
@@ -110,8 +110,8 @@ export class Sidebar extends React.Component<{}, {}> {
                     onSelectFileVariant={this.onSelectFileVariant}
                     onSelectDir={this.onSelectDir}
                     onClickAddVariant={this.onClickAddVariant}
-                    fileFilterText={this.injected.editorState.fileSearchText}
-                    contentFilterText={this.injected.projectState.projectSearchText}
+                    fileNameSearchText={this.injected.editorState.fileNameSearchText}
+                    fileContentSearchText={this.injected.projectState.fileContentSearchText}
                 />
             </div>
         );
@@ -125,14 +125,14 @@ export class Sidebar extends React.Component<{}, {}> {
     private onSelectFile = (file: SchemaFile) => {
         selectFile(file.basename);
         if(this.injected.editorState.currentFile) {
-            this.injected.editorState.currentFile.search(this.injected.projectState.projectSearchText);
+            this.injected.editorState.currentFile.search(this.injected.projectState.fileContentSearchText);
         }
     };
 
     private onSelectFileVariant = (basename: string, file: SchemaFileVariant) => {
         selectFileVariant(basename, file.variantId);
         if(this.injected.editorState.currentFile) {
-            this.injected.editorState.currentFile.search(this.injected.projectState.projectSearchText);
+            this.injected.editorState.currentFile.search(this.injected.projectState.fileContentSearchText);
         }
     };
 
@@ -157,11 +157,11 @@ export class Sidebar extends React.Component<{}, {}> {
     };
 
     private onSearchForFile = (value: string) => {
-        searchForFile(value);
+        searchForFileName(value);
     };
 
     private onSearchProject = (value: string) => {
-        searchInProject(value);
+        searchForFileContent(value);
     };
 
     private onSelectVariantFilter = (filter: string) => {

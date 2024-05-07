@@ -2,7 +2,7 @@ import {injectable} from 'inversify';
 import {ProjectState} from '../../states/ProjectState';
 
 @injectable()
-export class SearchInProject {
+export class SearchForFileContent {
 
     constructor(
         private projectState: ProjectState,
@@ -10,7 +10,7 @@ export class SearchInProject {
     }
 
     execute(text: string): Promise<void> {
-        this.projectState.setProjectSearchText(text);
+        this.projectState.setFileContentSearchText(text);
         return Promise.resolve();
     }
 }

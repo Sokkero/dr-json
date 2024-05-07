@@ -6,16 +6,16 @@ import {Project} from './objects/Project';
 export class ProjectState {
     @observable private _project: Project | null   = null;
     @observable private _isLoading: boolean        = false;
-    @observable private _projectSearchText: string = '';
+    @observable private _fileContentSearchText: string = '';
     @observable private _error: any                = null;
 
-    get projectSearchText(): string {
-        return this._projectSearchText;
+    get fileContentSearchText(): string {
+        return this._fileContentSearchText;
     }
 
     @action
-    setProjectSearchText(text: string): void {
-        this._projectSearchText = text;
+    setFileContentSearchText(text: string): void {
+        this._fileContentSearchText = text;
     }
 
     @action
