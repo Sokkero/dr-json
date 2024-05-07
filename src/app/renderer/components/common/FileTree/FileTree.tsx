@@ -22,8 +22,8 @@ interface Props {
     onSelectFileVariant?: (basename: string, file: SchemaFileVariant) => void;
     onSelectDir?: (dir: SchemaDir) => void;
     onClickAddVariant: () => void;
-    fileFilterText?: string | null;
-    contentFilterText?: string | null;
+    fileFilterText?: string;
+    contentFilterText?: string;
 }
 
 @observer

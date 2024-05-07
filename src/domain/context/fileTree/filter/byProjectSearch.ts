@@ -16,7 +16,7 @@ export function byProjectSearch(search: string, filesystem: FilesystemImpl): (it
             //Search dir
             return checkDir(item, search, filesystem);
         }
-        else if(item instanceof SchemaFile)
+        if(item instanceof SchemaFile)
         {
             //Check File
             return checkFile(item, search, filesystem);
@@ -29,9 +29,9 @@ export function byProjectSearch(search: string, filesystem: FilesystemImpl): (it
 function checkDir(dir: SchemaDir, search: string, filesystem: FilesystemImpl) : boolean
 {
     const children : SchemaTreeItem[] = dir.children;
-    for(let i = 0; i < children.length; i++)
+    for(let i: number = 0; i < children.length; i++)
     {
-        const child = children[i];
+        const child: SchemaTreeItem = children[i];
         if(child instanceof SchemaDir)
         {
             if(checkDir(child, search, filesystem))
@@ -53,7 +53,7 @@ function checkDir(dir: SchemaDir, search: string, filesystem: FilesystemImpl) : 
 function checkFile(file: SchemaFile, search: string, filesystem: FilesystemImpl) : boolean
 {
     try{
-        const haystack = JSON.stringify(filesystem.readJsonSync(file.dataFile)).replace('\\', '').toLowerCase();
+        const haystack: string = JSON.stringify(filesystem.readJsonSync(file.dataFile)).replace('\\', '').toLowerCase();
         return haystack.includes(search);
     } catch(error) {
         console.warn(`Failed to read file "${file.dataFile}": ${error}`)
