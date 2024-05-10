@@ -79,6 +79,7 @@ export class FileEditor extends React.Component<Props, State> {
                     hasErrors={hasErrors}
                     onToggleErrors={this.onToggleErrors}
                     searchText={this.props.activeFile.searchText}
+                    onIsRewardsToggle={this.onIsRewardToggle}
                 />
 
                 <div className={styles.entries} ref="container" id="editorContainer">
@@ -195,6 +196,10 @@ export class FileEditor extends React.Component<Props, State> {
                 onSubmit={this.onSubmitEditForm}
             />
         );
+    }
+
+    private onIsRewardToggle = (status: boolean) => {
+        console.log(status);
     }
 
     private onSearch = (value: string) => {
