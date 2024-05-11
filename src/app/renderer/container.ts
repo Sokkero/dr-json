@@ -38,6 +38,7 @@ import {CreateVariant} from '../../domain/useCases/variants/CreateVariant';
 import {OpenCreateVariant} from '../../domain/useCases/variants/OpenCreateVariant';
 import {FilesystemImpl} from './services/FilesystemImpl';
 import {SettingsStorageImpl} from './services/SettingsStorageImpl';
+import {ToggleIsRewardFile} from "../../domain/useCases/fileTree/ToggleIsRewardFile";
 
 let container: Container = new Container();
 
@@ -75,6 +76,7 @@ container.bind<SelectFile>(SelectFile).toSelf().inSingletonScope();
 container.bind<SelectFileVariant>(SelectFileVariant).toSelf().inSingletonScope();
 container.bind<SelectFilter>(SelectFilter).toSelf().inSingletonScope();
 container.bind<ToggleCollapseDir>(ToggleCollapseDir).toSelf().inSingletonScope();
+container.bind<ToggleIsRewardFile>(ToggleIsRewardFile).toSelf().inSingletonScope();
 container.bind<SearchForFileName>(SearchForFileName).toSelf().inSingletonScope();
 // - project
 container.bind<CloseProject>(CloseProject).toSelf().inSingletonScope();

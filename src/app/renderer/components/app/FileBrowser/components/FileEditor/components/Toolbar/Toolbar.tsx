@@ -16,6 +16,7 @@ interface Props {
     hasErrors?: boolean;
     onToggleErrors?: () => void;
     searchText?: string;
+    isReward?: boolean;
     onIsRewardsToggle?: (status: boolean) => void;
 }
 
@@ -43,6 +44,7 @@ export class Toolbar extends React.Component<Props, {}> {
 
                     <Checkbox
                         label={"Are Rewards"}
+                        checked={this.props.isReward}
                         onChange={this.props.onIsRewardsToggle}
                     />
 
