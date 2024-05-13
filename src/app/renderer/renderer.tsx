@@ -18,6 +18,7 @@ import {App} from './components/app/App';
 import {container} from './container';
 import {rememberSchemaTreeCollapsedState} from './reactions/rememberSchemaTreeCollapsedState';
 import {rememberRewardFilesState} from "./reactions/rememberRewardFilesState";
+import {exportRewards} from "./actions/project/exportRewards";
 
 window.addEventListener('error', (event: ErrorEvent): void => {
     ipcRenderer.send('handle-error', errorToString(event.error));
@@ -28,6 +29,10 @@ window.addEventListener('unhandledrejection', (event: Event): void => {
 
 configure({
     enforceActions: "never",
+});
+
+ipcRenderer.on('rewards-export', (_event: any, path: string) => {
+    exportRewards(path);
 });
 
 ipcRenderer.on('project-selected', (_event: any, path: string) => {

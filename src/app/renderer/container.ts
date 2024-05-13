@@ -32,6 +32,7 @@ import {SelectFilter} from '../../domain/useCases/fileTree/SelectFilter';
 import {ToggleCollapseDir} from '../../domain/useCases/fileTree/ToggleCollapseDir';
 import {CloseProject} from '../../domain/useCases/project/CloseProject';
 import {OpenProject} from '../../domain/useCases/project/OpenProject';
+import {ExportRewards} from "../../domain/useCases/project/ExportRewards";
 import {Reload} from '../../domain/useCases/project/Reload';
 import {CloseCreateVariant} from '../../domain/useCases/variants/CloseCreateVariant';
 import {CreateVariant} from '../../domain/useCases/variants/CreateVariant';
@@ -81,6 +82,7 @@ container.bind<SearchForFileName>(SearchForFileName).toSelf().inSingletonScope()
 // - project
 container.bind<CloseProject>(CloseProject).toSelf().inSingletonScope();
 container.bind<OpenProject>(OpenProject).toSelf().inSingletonScope();
+container.bind<ExportRewards>(ExportRewards).toSelf().inSingletonScope();
 container.bind<Reload>(Reload).toSelf().inSingletonScope();
 container.bind<SearchForFileContent>(SearchForFileContent).toSelf().inSingletonScope();
 // - variants
