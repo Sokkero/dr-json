@@ -15,18 +15,6 @@ interface RewardData {
     numberOfFragmentsNeeded: string;
 }
 
-const createNewRewardData = (): RewardData => {
-    return  {
-        id: '',
-        name: '',
-        rewardType: '',
-        featureFlag: '',
-        premiumEquivalent: '',
-        premiumEquivalentExchange: '',
-        numberOfFragmentsNeeded: '',
-    };
-}
-
 @injectable()
 export class ExportRewards {
 
@@ -36,6 +24,17 @@ export class ExportRewards {
     ) {
     }
 
+    private createNewRewardData = (): RewardData => {
+        return  {
+            id: '',
+            name: '',
+            rewardType: '',
+            featureFlag: '',
+            premiumEquivalent: '',
+            premiumEquivalentExchange: '',
+            numberOfFragmentsNeeded: '',
+        };
+    }
 
     execute(path: string): Promise<void> {
         if (!this.projectState.hasProject) {
@@ -43,8 +42,8 @@ export class ExportRewards {
             return Promise.resolve();
         }
 
-        let rewards: SchemaFile[] = [];
-        this.projectState.project.schemaTree.forEachFile((file: SchemaFile) => {
+        const rewards: SchemaFile[] = [];
+        this.projectState.project.schemaTree.forEachFile((file: SchemaFile): void => {
             if (file.isReward) {
                 rewards.push(file);
             }
@@ -70,7 +69,7 @@ export class ExportRewards {
     private extractFileData(path: string, fileName: string, variantName: string = ""): RewardData[] {
         const rawData: Object = this.filesystem.readJsonSync(path);
 
-        let extractedData: RewardData[] = [];
+        const extractedData: RewardData[] = [];
         //Loop through entries of the current file
         for (const key of Object.keys(rawData)) {
             const entryData: Object = rawData[key as keyof typeof rawData];
@@ -106,7 +105,7 @@ export class ExportRewards {
     }
 
     private extractEntryData(entry: Object, fileName: string) : RewardData {
-        let extractedData: RewardData = createNewRewardData();
+        let extractedData: RewardData = this.createNewRewardData();
         extractedData.rewardType = fileName;
 
         //Loop through keys of the entry

@@ -31,11 +31,11 @@ configure({
     enforceActions: "never",
 });
 
-ipcRenderer.on('rewards-export', (_event: any, path: string) => {
+ipcRenderer.on('rewards-export', (_event: any, path: string): void => {
     exportRewards(path);
 });
 
-ipcRenderer.on('project-selected', (_event: any, path: string) => {
+ipcRenderer.on('project-selected', (_event: any, path: string): void => {
     openProject(path);
 });
 

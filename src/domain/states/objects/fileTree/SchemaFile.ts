@@ -12,12 +12,12 @@ export class SchemaFile extends SchemaTreeItem {
         public readonly schemaFile: string,
         public readonly dataFile: string,
         variants: SchemaFileVariant[] = [],
-        isReward?: boolean,
+        isReward: boolean = false,
     ) {
         super(label, basename);
         this._variants = variants;
         this.sortVariants();
-        this._isReward = isReward ? isReward : false;
+        this._isReward = isReward;
     }
 
     public get isReward(): boolean {

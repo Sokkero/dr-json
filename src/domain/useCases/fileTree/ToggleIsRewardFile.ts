@@ -12,7 +12,7 @@ export class ToggleIsRewardFile {
 
     execute(basename: string): Promise<void> {
         this.projectState.project.schemaTree.forEachFile((file: SchemaFile) => {
-            if (file.basename == basename) {
+            if (file.basename === basename) {
                 file.setIsReward(!file.isReward);
             }
         });

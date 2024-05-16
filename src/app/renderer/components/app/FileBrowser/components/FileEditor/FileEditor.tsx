@@ -201,7 +201,7 @@ export class FileEditor extends React.Component<Props, State> {
         );
     }
 
-    private onIsRewardToggle = () => {
+    private onIsRewardToggle = (): void => {
         toggleIsRewardFile(this.props.activeFile.basename);
     }
 

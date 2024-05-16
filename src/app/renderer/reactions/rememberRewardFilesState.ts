@@ -8,14 +8,14 @@ import {changeSettingRewardDirs} from "../actions/settings/changeSettingRewardDi
 // after closing and opening the application again.
 const projectState: ProjectState = container.get(ProjectState);
 
-export function rememberRewardFilesState() {
+export function rememberRewardFilesState(): void {
     reaction(
-        () => {
+        (): string[] => {
             if (!projectState.hasProject) {
-                return null;
+                return [];
             }
 
-            let rewards: string[] = [];
+            const rewards: string[] = [];
 
             projectState.project.schemaTree.forEachFile((file: SchemaFile) => {
                 if (file.isReward) {
@@ -25,8 +25,8 @@ export function rememberRewardFilesState() {
 
             return rewards;
         },
-        (rewards: string[] | null) => {
-            if (rewards != null) {
+        (rewards: string[]): void => {
+            if (rewards.length > 0) {
                 changeSettingRewardDirs(rewards);
             }
         },

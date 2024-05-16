@@ -93,7 +93,7 @@ export class SchemaTree {
     }
 
     private forEachFileRecursive(children: SchemaTreeItem[], fn: (dir: SchemaFile) => void): void {
-        for (let child of children) {
+        for (const child of children) {
             if (child instanceof SchemaDir) {
                 const dir: SchemaDir = child as SchemaDir;
                 this.forEachFileRecursive(dir.children, fn);

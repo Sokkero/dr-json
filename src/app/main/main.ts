@@ -81,7 +81,7 @@ function createMenu() {
                 },
                 {
                     label: 'Export Rewards',
-                    click: function () {
+                    click: function (): void {
                         if(win) {
                             onExportRewards(win.webContents);
                         }
@@ -218,7 +218,7 @@ ipcMain.handle('setStoreValue', (_event, key, data) => {
     store.set(key, data);
 });
 
-function onExportRewards(webContents: WebContents) {
+function onExportRewards(webContents: WebContents): void {
     dialog.showSaveDialog({
         filters: [
             {name: 'Rewards', extensions: ['csv']},
