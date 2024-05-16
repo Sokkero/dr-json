@@ -13,5 +13,5 @@ export interface FilesystemInterface {
 
     writeJson(file: string, data: any): Promise<void>;
 
-    writeCsv(file: string, data: any): Promise<void>;
+    writeCsv(file: string, data: string): Promise<void>;
 }

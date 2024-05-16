@@ -78,7 +78,7 @@ export class FilesystemImpl implements FilesystemInterface {
         });
     }
 
-    public writeCsv(path: string, data: any): Promise<void> {
+    public writeCsv(path: string, data: string): Promise<void> {
         return new Promise((resolve) => {
             fs.ensureFile(path)
                 .then(() => fs.writeFile(path, data, 'utf8'))
