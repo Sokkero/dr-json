@@ -12,7 +12,6 @@ interface RewardData {
     featureFlag: string;
     premiumEquivalent: string;
     premiumEquivalentExchange: string;
-    numberOfFragmentsNeeded: string;
 }
 
 @injectable()
@@ -32,7 +31,6 @@ export class ExportRewards {
             featureFlag: '',
             premiumEquivalent: '',
             premiumEquivalentExchange: '',
-            numberOfFragmentsNeeded: '',
         };
     }
 
